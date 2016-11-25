@@ -1,5 +1,5 @@
 # Stack application
-Stack is a ReactJS application I made for a school project within a short amount of time (28h). With the application it's possible to stack different tasks into a list.
+Stack is a ReactJS application I made for a school project within a short amount of time (28h). With this application it is possible to stack different tasks into a list.
 
 ## Installation
 To run this project you need to install the environment first. Go to the folder of this project on your computer and install the application with the following command:
