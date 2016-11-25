@@ -1,7 +1,6 @@
 import React from 'react';
 import Header from '../components/Header';
 import Themes from '../components/Themes';
-// import NavLink from './NavLink';
 
 var Settings = React.createClass({
 

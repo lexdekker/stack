@@ -1,5 +1,5 @@
 import React from 'react';
-import NavLink from '../views/NavLink';
+import NavLink from './NavLink';
 
 var Header = React.createClass({
   getInitialState: function() {

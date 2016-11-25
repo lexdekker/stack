@@ -1,6 +1,5 @@
 import React from 'react';
 import Header from '../components/Header';
-import NavLink from './NavLink';
 
 var Login = React.createClass({
   render() {
