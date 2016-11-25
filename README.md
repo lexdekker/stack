@@ -14,7 +14,7 @@ To run the application environment you need to run npm start:
 $ npm start
 ```
 
-The environment will run on host: 0.0.0.0:3000.
+The environment will run on host: 0.0.0.0:3000 by default.
 
 ```js
 // webpack.config.js
