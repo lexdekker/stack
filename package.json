@@ -1,7 +1,7 @@
 {
   "name": "stack",
   "version": "1.0.0",
-  "description": "",
+  "description": "Stack tasks and get things done!",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --inline --content-base . --history-api-fallback"
