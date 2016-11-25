@@ -26,7 +26,7 @@ devServer: {
 ```
 
 ## My experience with React
-I have been working with React on this project for the first time. My journey started with understanding how React works. I followed the two courses about React on [Codecademy](codecademy.com/learn) to gain experience with its syntax and semantics.
+I have been working with React on this project for the first time. My journey started with understanding how React works. I followed the two courses about React on [Codecademy](https://www.codecademy.com/learn) to gain experience with its syntax and semantics.
 
 After I had done the two courses I wanted to start a project as soon as possible. But that was harder than expected. I came up with different ideas for an application and even started to work on some, but the skill required for them was out of my league at this point. After failing a few times I had to accept that I needed to start with a far more simple application before I could work on more complex projects.
 
