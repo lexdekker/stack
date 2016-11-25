@@ -39,7 +39,7 @@ React is quite complex and very strict. If you are new to React I recommend you 
 The power of React lies within the separation of components and files. It's smart to keep the components small and separate within different files and folders. This gives a nice overview of the folder structure op your application.
 
 #### Parents and Childs
-Working with components makes them easy to find, but it can be hard to let them work together. Passing a props from a Parent to a Childs component requires a second good look, especially when a render() needs to be updated after a change on the Child component.
+Working with components makes them easy to find, but it can be hard to let them work together. Passing props from a Parent to a Childs component requires a second good look, especially when a render() needs to be updated after a change on the Child component.
 
 #### Files
 React uses JSX to allow HTML tags inside JavaScript files. At first this seems a little weird, but after sometime you will love it.
