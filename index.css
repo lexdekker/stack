@@ -1,0 +1,253 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-size: 16px;
+  font-family: sans-serif;
+  background: #f5f5f5;
+  color: rgba(0, 0, 0, 0.84);
+}
+
+.e-overlay {
+  background: rgba(0, 0, 0, 0);
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: 1;
+
+  -webkit-transition: all .3s ease; /* For Safari 3.1 to 6.0 */
+  transition: all .3s ease;
+}
+
+.e-overlay.v-active {
+  background: rgba(0, 0, 0, 0.24);
+}
+
+/* HEADER */
+.c-header {
+  background: #2196F3;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 56px;
+  z-index: 2;
+}
+
+.c-header .e-icon {
+  padding: 16px;
+  display: inline-block;
+  color: #fff;
+  cursor: pointer;
+  height: 24px;
+}
+
+.c-header .e-title {
+  color: #fff;
+  font-size: 24px;
+  padding: 14px 0;
+  display: inline-block;
+  font-weight: 500;
+  vertical-align: top;
+}
+
+.c-header .c-nav {
+  position: relative;
+  left: -300px;
+  max-width: 300px;
+  background: #ffffff;
+  height: 100vh;
+
+  -webkit-transition: all .3s ease; /* For Safari 3.1 to 6.0 */
+  transition: all .3s ease;
+}
+
+.c-header .c-nav.v-active {
+  left: 0;
+  box-shadow: 0 2px 17px rgba(0, 0, 0, 0.26);
+}
+
+.c-header .c-nav ul li {
+  width: 100%;
+  text-align: center;
+}
+
+.c-header .c-nav ul li a {
+  display: block;
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.84);
+  padding: 24px 0;
+
+  -webkit-transition: all .3s ease; /* For Safari 3.1 to 6.0 */
+  transition: all .3s ease;
+}
+
+.c-header .c-nav ul li a:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.c-header .c-nav ul li a.active {
+  color: #E91E63;
+  font-weight: 600;
+}
+
+
+/* PAGE */
+.c-page {
+  position: relative;
+  top: 56px;
+  background: #ffffff;
+}
+
+
+/* CONTENT */
+.c-content {
+  display: block;
+  padding: 16px;
+  max-width: 640px;
+  margin: auto;
+}
+
+.c-content h1 {
+  font-size: 1.8em;
+  margin-bottom: 0.4em;
+}
+
+.c-content h2 {
+  font-size: 1.4em;
+  margin-bottom: 0.4em;
+}
+
+.c-content h3 {
+  font-size: 1.2em;
+  margin-bottom: 0.4em;
+}
+
+.c-content p {
+  line-height: 1.5em;
+}
+
+.c-content p + p {
+  margin-top: 1em;
+}
+
+.c-content p + h1,
+.c-content p + h2,
+.c-content p + h3 {
+  margin-top: 1em;
+}
+
+
+/* SETTINGS THEME */
+.c-theme {
+  display: block;
+  margin: 16px 0;
+}
+
+.c-theme .e-theme {
+  display: inline-block;
+  width: 100px;
+  height: 60px;
+  margin: 0px 2px;
+  background: #eee;
+  position: relative;
+}
+
+.c-theme .e-theme i {
+  color: #fff;
+  position: absolute;
+  text-align: center;
+  padding: 18px 38px;
+  display: none;
+}
+
+.c-theme .e-theme.v-active i {
+  display: block;
+}
+
+.c-theme .e-theme.v-blue {
+  background: #2196F3;
+}
+
+.c-theme .e-theme.v-pink {
+  background: #E91E63;
+}
+
+.c-theme .e-theme.v-orange {
+  background: #FF5722;
+}
+
+.c-theme .e-theme.v-purple {
+  background: #673AB7;
+}
+
+/* TODOLIST */
+.c-todo-list {
+  /*position: relative;
+  top: 56px;*/
+  margin-bottom: 48px;
+}
+
+.c-todo-list .c-todo {
+  display: block;
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+  background: #fff;
+  cursor: pointer;
+
+  -webkit-transition: all .3s ease; /* For Safari 3.1 to 6.0 */
+  transition: all .3s ease;
+}
+
+.c-todo-list .c-todo:hover {
+  background: #FAFAFA;
+}
+
+.c-todo-list .c-todo.v-done {
+  text-decoration: line-through;
+  font-style: italic;
+}
+
+.c-todo-list .c-todo.v-done .e-text {
+  opacity: .54;
+}
+
+.c-todo-list .c-todo .e-text {
+  color: rgba(0, 0, 0, 0.84);
+}
+
+.c-todo-list .c-todo .e-remove {
+  float: right;
+  cursor: pointer;
+  position: relative;
+  color: rgba(0, 0, 0, 0.26);
+  right: -5px;
+  top: -2px;
+}
+
+
+/* FOOTER FORM INPUT */
+.c-todo-input {
+  position: relative;
+  position: fixed;
+  bottom: 0px;
+}
+
+.c-todo-input .e-input {
+  width: 100%;
+  background: #fff;
+  border: none;
+  padding: 15px;
+  font-size: 16px;
+  font-family: sans-serif;
+  position: fixed;
+  bottom: 0px;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.12);
+}
+
+.c-todo-input .e-input:focus {
+  outline: none;
+}
