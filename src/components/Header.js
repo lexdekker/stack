@@ -16,21 +16,22 @@ var Header = React.createClass({
     return (
       <section>
         <header className="c-header">
-          <div className="e-icon">
-            <i className="material-icons"
-              onClick={this.handleMenuToggle}>menu</i>
+          <div className={"e-icon " + (this.state.menuOpen ? "is-clicked" : "")}
+            onClick={this.handleMenuToggle}>
+            <i className="material-icons v-menu">menu</i>
+            <i className="material-icons v-close">close</i>
           </div>
           <h1 className="e-title">Stack</h1>
-          <nav className={this.state.menuOpen ? "c-nav v-active" : "c-nav"}>
+          <nav className={ "c-nav " + (this.state.menuOpen ? "v-active" : "")}>
             <ul role="nav">
               <li><NavLink to="/" onlyActiveOnIndex>Home</NavLink></li>
-              <li><NavLink to="/settings">Settings</NavLink></li>
               <li><NavLink to="/about">About</NavLink></li>
-              <li><NavLink to="/login">Login</NavLink></li>
+              <li className="e-github"><a href="https://github.com/lexdekker/stack" target="_blank">Github</a></li>
             </ul>
           </nav>
         </header>
-        <div className="e-overlay"></div>
+        <div className={ "e-overlay " + (this.state.menuOpen ? "v-active" : "")}
+          onClick={this.handleMenuToggle}></div>
       </section>
 
     )

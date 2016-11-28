@@ -12,17 +12,18 @@ body {
 
 .e-overlay {
   background: rgba(0, 0, 0, 0);
-  position: relative;
-  width: 100%;
-  height: 100%;
+  position: fixed;
   display: block;
   z-index: 1;
+  cursor: pointer;
 
   -webkit-transition: all .3s ease; /* For Safari 3.1 to 6.0 */
   transition: all .3s ease;
 }
 
 .e-overlay.v-active {
+  width: 100%;
+  height: 100%;
   background: rgba(0, 0, 0, 0.24);
 }
 
@@ -43,6 +44,22 @@ body {
   color: #fff;
   cursor: pointer;
   height: 24px;
+}
+
+.c-header .e-icon .v-menu {
+  display: block;
+}
+
+.c-header .e-icon.is-clicked .v-menu {
+  display: none;
+}
+
+.c-header .e-icon .v-close {
+  display: none;
+}
+
+.c-header .e-icon.is-clicked .v-close {
+  display: block;
 }
 
 .c-header .e-title {
@@ -67,12 +84,21 @@ body {
 
 .c-header .c-nav.v-active {
   left: 0;
-  box-shadow: 0 2px 17px rgba(0, 0, 0, 0.26);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.26);
 }
 
 .c-header .c-nav ul li {
   width: 100%;
   text-align: center;
+}
+
+.c-header .c-nav ul li.e-github {
+  position: absolute;
+  left: 0;
+  bottom: 56px;
+  max-width: 300px;
+  background: #F5F5F5;
+  font-weight: bold;
 }
 
 .c-header .c-nav ul li a {
@@ -89,6 +115,11 @@ body {
   background: rgba(0, 0, 0, 0.06);
 }
 
+.c-header .c-nav ul li.e-github a:hover {
+  color: #E91E63;
+  background: rgba(0, 0, 0, 0);
+}
+
 .c-header .c-nav ul li a.active {
   color: #E91E63;
   font-weight: 600;
@@ -103,12 +134,40 @@ body {
 }
 
 
+/* BANNER */
+.c-banner {
+  width: 100%;
+  max-height: 560px;
+  overflow: hidden;
+}
+
+.c-banner .e-slider {
+  display: none;
+  width: 100%;
+  padding-bottom: 50%;
+  background-position: 50% 50%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.c-banner .e-img {
+  width: 100%;
+  display: block;
+}
+
+
 /* CONTENT */
 .c-content {
   display: block;
   padding: 16px;
   max-width: 640px;
   margin: auto;
+}
+
+.c-content .e-title {
+  margin-top: 10px;
 }
 
 .c-content h1 {
@@ -138,6 +197,12 @@ body {
 .c-content p + h2,
 .c-content p + h3 {
   margin-top: 1em;
+}
+
+.c-content a {
+  color: #E91E63;
+  font-weight: bold;
+  text-decoration: none;
 }
 
 
@@ -250,4 +315,31 @@ body {
 
 .c-todo-input .e-input:focus {
   outline: none;
+}
+
+
+/* MEDIA VIEWPORT */
+@media (min-width: 560px) {
+  .c-banner {
+    /*max-height: 260px;*/
+  }
+}
+
+@media (min-width: 720px) {
+
+  .c-content {
+    padding: 80px 0;
+  }
+
+  .c-content p + h1,
+  .c-content p + h2,
+  .c-content p + h3 {
+    margin-top: 2em;
+  }
+}
+
+@media (min-width: 1080px) {
+  .c-banner {
+    /*max-height: 480px;*/
+  }
 }
