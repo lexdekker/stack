@@ -1,13 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-/* With some help of:
-    - https://scotch.io/tutorials/create-a-simple-to-do-app-with-react
-    - API axios
-    - mockApi (for data(json) storage)
-    - Google material icons
-*/
-
 var TodoForm = function({addTodo}) {
   // Tracks the input
   var input;
