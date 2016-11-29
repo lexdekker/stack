@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-/* With some help of: https://scotch.io/tutorials/create-a-simple-to-do-app-with-react
+/* With some help of:
+    - https://scotch.io/tutorials/create-a-simple-to-do-app-with-react
     - API axios
     - mockApi (for data(json) storage)
     - Google material icons
@@ -63,7 +64,7 @@ var TodoApp = React.createClass({
     axios.get(this.apiUrl)
       .then((res) => {
         // Set state with result
-        this.setState({data:res.data});
+        this.setState({data: res.data});
       });
   },
 
@@ -74,10 +75,12 @@ var TodoApp = React.createClass({
       text: val,
       class: 'v-undone'
     }
+
     // Check for valid input
     if (todo.text == '') {
       return
     }
+
     // Update data
     axios.post(this.apiUrl, todo)
       .then((res) => {
@@ -86,12 +89,12 @@ var TodoApp = React.createClass({
       });
   },
 
-  // Handle remove
   handleRemove: function(id) {
     // Filter all todos except the one to be removed
     var remainder = this.state.data.filter(function(todo) {
       if(todo.id !== id) return todo;
     });
+
     // Update state with filter
     axios.delete(this.apiUrl+'/'+id)
       .then((res) => {
@@ -106,12 +109,13 @@ var TodoApp = React.createClass({
     } else {
       todo.class = 'v-undone';
     }
+
     // Update state with filter
     axios.put(this.apiUrl+'/'+id, todo)
-      .then((res) => {
-        this.state.data.push(res.data);
-        this.setState({data: this.state.data});
-      });
+    .then((res) => {
+      this.state.data.push(res.data);
+      this.setState({data: this.state.data});
+    });
   },
 
   render: function() {
