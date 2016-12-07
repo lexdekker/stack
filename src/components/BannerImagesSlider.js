@@ -8,7 +8,6 @@ var BANNERPATHS = [
 
 function BannerImage(props) {
   var src = props.src;
-  // var background = " url('" + src + "') no-repeat center center";
   return (
       <div>
         <img src={src} alt="Stack banner" className="e-img"/>
@@ -34,12 +33,10 @@ var BannerImagesSlider = React.createClass({
   interval: null,
 
   componentDidMount: function () {
-    // Start interval
     this.interval = setInterval(this.nextImage, 2500);
   },
 
   componentWillUnmount: function () {
-    // Stop interval
     clearInterval(this.interval);
   },
 

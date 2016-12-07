@@ -53,7 +53,7 @@ var TodoApp = React.createClass({
   },
 
   componentDidMount: function() {
-    // HTTP reques with Axios
+    // HTTP request with Axios
     axios.get(this.apiUrl)
       .then((res) => {
         // Set state with result

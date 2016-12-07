@@ -9,7 +9,7 @@ var Header = React.createClass({
   },
 
   handleMenuToggle: function() {
-    this.setState( { menuOpen : !this.state.menuOpen } );
+    this.setState( { menuOpen: !this.state.menuOpen } );
   },
 
   render: function() {
