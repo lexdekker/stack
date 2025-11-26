@@ -1,49 +1,38 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
-var BANNERPATHS = [
+const BANNERPATHS = [
   '/src/images/banner-1.jpg',
   '/src/images/banner-2.jpg',
   '/src/images/banner-3.jpg'
 ];
 
-function BannerImage(props) {
-  var src = props.src;
+// BannerImage component
+const BannerImage = ({ src }) => {
   return (
-      <div>
-        <img src={src} alt="Stack banner" className="e-img"/>
-      </div>
-    );
-}
-
-BannerImage.propTypes = {
-  src: React.PropTypes.string.isRequired
+    <div>
+      <img src={src} alt="Stack banner" className="e-img" />
+    </div>
+  );
 };
 
-var BannerImagesSlider = React.createClass({
-  getInitialState: function () {
-    return { currentImage: 0 };
-  },
+BannerImage.propTypes = {
+  src: PropTypes.string.isRequired
+};
 
-  nextImage: function () {
-    var current = this.state.currentImage;
-    var next = ++current % BANNERPATHS.length;
-    this.setState({ currentImage: next });
-  },
+// BannerImagesSlider component
+const BannerImagesSlider = () => {
+  const [currentImage, setCurrentImage] = useState(0);
 
-  interval: null,
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImage((prev) => (prev + 1) % BANNERPATHS.length);
+    }, 2500);
 
-  componentDidMount: function () {
-    this.interval = setInterval(this.nextImage, 2500);
-  },
+    return () => clearInterval(interval); // cleanup on unmount
+  }, []);
 
-  componentWillUnmount: function () {
-    clearInterval(this.interval);
-  },
+  return <BannerImage src={BANNERPATHS[currentImage]} />;
+};
 
-  render: function () {
-    var src = BANNERPATHS[this.state.currentImage];
-    return <BannerImage src={src} />;
-  }
-});
-
-module.exports = BannerImagesSlider;
+export default BannerImagesSlider;

@@ -1,11 +1,16 @@
 // modules/NavLink.js
-import React from 'react'
-import { Link } from 'react-router'
+import React from 'react';
+import { NavLink as RouterNavLink } from 'react-router-dom';
 
-var NavLink = React.createClass({
-  render() {
-    return <Link {...this.props} activeClassName="active"/>
-  }
-});
+const NavLink = ({ children, ...props }) => {
+  return (
+    <RouterNavLink
+      {...props}
+      className={({ isActive }) => (isActive ? 'active' : '')}
+    >
+      {children}
+    </RouterNavLink>
+  );
+};
 
-module.exports = NavLink;
+export default NavLink;

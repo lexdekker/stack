@@ -1,15 +1,19 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Router, Route, browserHistory, IndexRoute } from 'react-router';
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import App from './src/views/App';
 import Home from './src/views/Home';
 import About from './src/views/About';
 
-ReactDOM.render((
-  <Router history={browserHistory}>
-    <Route path="/" component={App}>
-      <IndexRoute component={Home}/>
-      <Route path="/about" component={About}/>
-    </Route>
-  </Router>
-), document.getElementById('app'));
+const root = ReactDOM.createRoot(document.getElementById('app'));
+
+root.render(
+  <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<App />}>
+        <Route index element={<Home />} />
+        <Route path="about" element={<About />} />
+      </Route>
+    </Routes>
+  </BrowserRouter>
+);

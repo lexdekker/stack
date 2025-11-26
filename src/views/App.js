@@ -1,13 +1,14 @@
-import React from 'react';
+import { Outlet } from 'react-router-dom';
+import Header from '../components/Header'
+import React from 'react'
 
-var App = React.createClass({
-  render() {
-    return (
-      <main className="">
-        {this.props.children}
-      </main>
-    )
-  }
-});
+const App = () => {
+  return (
+    <main>
+      <Header />
+      <Outlet /> {/* Renders child routes (Home, About, etc.) */}
+    </main>
+  );
+};
 
-module.exports = App;
+export default App;

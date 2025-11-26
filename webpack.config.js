@@ -1,20 +1,38 @@
+// webpack.config.js
+const path = require('path');
+
 module.exports = {
+  mode: 'development', // development mode
   entry: './index.js',
-
   output: {
-    filename: 'bundle.js',
-    publicPath: '/'
+    filename: '[name].js',
+    path: path.resolve(__dirname, 'dist'), // output folder
+    publicPath: '/', // needed for dev server
+    clean: true // clean the output folder before each build
   },
-
   devServer: {
-    inline: true,
+    static: {
+      directory: path.resolve(__dirname, 'public') // serve static files
+    },
+    historyApiFallback: true,
     host: '0.0.0.0',
-    port: 3000
+    port: 3000,
+    hot: true, // enable Hot Module Replacement
+    open: true, // opens browser automatically
   },
-
   module: {
-    loaders: [
-      { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader?presets[]=es2015&presets[]=react' }
+    rules: [
+      {
+        test: /\.jsx?$/, // JS and JSX files
+        exclude: /node_modules/,
+        use: 'babel-loader' // uses .babelrc for config
+      }
     ]
+  },
+  resolve: {
+    extensions: ['.js', '.jsx'] // allows imports without extensions
+  },
+  optimization: {
+    runtimeChunk: 'single' // optional, helps with caching
   }
-}
+};

@@ -1,129 +1,104 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-var TodoForm = function({addTodo}) {
-  // Tracks the input
-  var input;
+// TodoForm component
+const TodoForm = ({ addTodo }) => {
+  let input;
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (input.value.trim() === '') return;
+    addTodo(input.value);
+    input.value = '';
+  };
 
   return (
-    <form className="c-todo-input" onSubmit={function(e) {
-        e.preventDefault();
-        addTodo(input.value);
-        input.value = '';
-      }}>
-      <input className="e-input" placeholder="Add a task" ref={ node => {
-        input = node;
-      }} />
+    <form className="c-todo-input" onSubmit={handleSubmit}>
+      <input
+        className="e-input"
+        placeholder="Add a task"
+        ref={(node) => { input = node; }}
+      />
       <br />
     </form>
   );
 };
 
-var Todo = function({todo, remove, toggleTodoClass}) {
+// Todo component
+const Todo = ({ todo, remove, toggleTodoClass }) => {
   return (
-      <div className={ "c-todo " + todo.class }
-        onClick={ function() {toggleTodoClass(todo.id, todo)} }>
-        <p className="e-item">
-          <span className="e-text">{ todo.text }</span>
-          <span className="e-remove" onClick={ function() {remove(todo.id)} }>
-            <i className="material-icons">close</i>
-          </span>
-        </p>
-      </div>
-    );
-}
+    <div
+      className={`c-todo ${todo.class}`}
+      onClick={() => toggleTodoClass(todo.id, todo)}
+    >
+      <p className="e-item">
+        <span className="e-text">{todo.text}</span>
+        <span
+          className="e-remove"
+          onClick={(e) => {
+            e.stopPropagation(); // prevent triggering toggle
+            remove(todo.id);
+          }}
+        >
+          <i className="material-icons">close</i>
+        </span>
+      </p>
+    </div>
+  );
+};
 
-var TodoList = function({todos, remove, toggleTodoClass}) {
-  // Map through all the todos
-  var todoItem = todos.map(function(todo) {
-    return (
-      <Todo toggleTodoClass={ toggleTodoClass } todo={ todo } key={ todo.id } remove={ remove } />
-    );
-  });
-  return (<section className="c-todo-list">{ todoItem }</section>);
-}
-
-// Component
-var TodoApp = React.createClass({
-  getInitialState: function() {
-    this.apiUrl = '//581cbbd628a03411009e591c.mockapi.io/stack';
-    return {
-      data: []
-    };
-  },
-
-  componentDidMount: function() {
-    // HTTP request with Axios
-    axios.get(this.apiUrl)
-      .then((res) => {
-        // Set state with result
-        this.setState({data: res.data});
-      });
-  },
-
-  // Handler addTodo
-  addTodo: function(val) {
-    // Gather data
-    var todo = {
-      text: val,
-      class: 'v-undone'
-    }
-
-    // Check for valid input
-    if (todo.text == '') {
-      return
-    }
-
-    // Update data
-    axios.post(this.apiUrl, todo)
-      .then((res) => {
-        this.state.data.push(res.data);
-        this.setState({data: this.state.data});
-      });
-  },
-
-  handleRemove: function(id) {
-    // Filter all todos except the one to be removed
-    var remainder = this.state.data.filter(function(todo) {
-      if(todo.id !== id) return todo;
-    });
-
-    // Update state with filter
-    axios.delete(this.apiUrl+'/'+id)
-      .then((res) => {
-        this.setState({data: remainder});
-      })
-  },
-
-  toggleTodoClass: function(id, todo) {
-    // Change the class of the todo (id)
-    if(todo.id == id && todo.class != 'v-done') {
-      todo.class = 'v-done';
-    } else {
-      todo.class = 'v-undone';
-    }
-
-    // Update state with filter
-    axios.put(this.apiUrl+'/'+id, todo)
-    .then((res) => {
-      this.state.data.push(res.data);
-      this.setState({data: this.state.data});
-    });
-  },
-
-  render: function() {
-    // Render JSX
-    return (
-      <div>
-        <TodoList
-          todos={this.state.data}
-          remove={this.handleRemove}
-          toggleTodoClass={this.toggleTodoClass}
+// TodoList component
+const TodoList = ({ todos, remove, toggleTodoClass }) => {
+  return (
+    <section className="c-todo-list">
+      {todos.map((todo) => (
+        <Todo
+          key={todo.id}
+          todo={todo}
+          remove={remove}
+          toggleTodoClass={toggleTodoClass}
         />
-      <TodoForm addTodo={this.addTodo} />
-      </div>
-    );
-  }
-});
+      ))}
+    </section>
+  );
+};
 
-module.exports = TodoApp;
+// Main TodoApp component
+const TodoApp = () => {
+  const apiUrl = '//581cbbd628a03411009e591c.mockapi.io/stack';
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    // Fetch initial todos
+    axios.get(apiUrl).then((res) => setData(res.data));
+  }, [apiUrl]);
+
+  const addTodo = (val) => {
+    const todo = { text: val, class: 'v-undone' };
+    axios.post(apiUrl, todo).then((res) => setData((prev) => [...prev, res.data]));
+  };
+
+  const handleRemove = (id) => {
+    axios.delete(`${apiUrl}/${id}`).then(() =>
+      setData((prev) => prev.filter((todo) => todo.id !== id))
+    );
+  };
+
+  const toggleTodoClass = (id, todo) => {
+    const updatedTodo = { ...todo, class: todo.class === 'v-done' ? 'v-undone' : 'v-done' };
+    axios.put(`${apiUrl}/${id}`, updatedTodo).then((res) => {
+      setData((prev) =>
+        prev.map((t) => (t.id === id ? res.data : t))
+      );
+    });
+  };
+
+  return (
+    <div>
+      <TodoList todos={data} remove={handleRemove} toggleTodoClass={toggleTodoClass} />
+      <TodoForm addTodo={addTodo} />
+    </div>
+  );
+};
+
+export default TodoApp;

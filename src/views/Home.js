@@ -1,16 +1,13 @@
 import React from 'react';
-import Header from '../components/Header';
 import Tasks from '../components/Tasks';
 
-var Home = React.createClass({
-  render() {
-    return (
-      <div>
-        <Header />
-        <Tasks />
-      </div>
-    )
-  }
-});
+// Function component for React 18
+const Home = () => {
+  return (
+    <div>
+      <Tasks />
+    </div>
+  );
+};
 
-module.exports = Home;
+export default Home;
